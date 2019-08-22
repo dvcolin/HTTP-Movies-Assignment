@@ -9,7 +9,6 @@ import axios from 'axios'
 const App = () => {
   const [savedList, setSavedList] = useState([]);
   const [movies, setMovies] = useState([]);
-
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/movies")
@@ -17,7 +16,7 @@ const App = () => {
         setMovies(res.data);
       })
       .catch(err => console.log(err.response));
-  }, [movies])
+  }, [])
 
   const addToSavedList = movie => {
     setSavedList([...savedList, movie]);
