@@ -18,11 +18,15 @@ const App = () => {
         setMovies(res.data);
       })
       .catch(err => console.log(err.response));
-  }, [])
+  }, [movies])
 
   const addToSavedList = movie => {
     setSavedList([...savedList, movie]);
   };
+
+  const updateMovies = movie => {
+    setMovies([...movies, movie])
+  }
 
   return (
     <>
@@ -34,7 +38,7 @@ const App = () => {
           return <Movie {...props} addToSavedList={addToSavedList} />;
         }}
       />
-      <Route path='/update-movie/:id' render={props => <UpdateForm {...props} movies={movies} />} />
+      <Route path='/update-movie/:id' render={props => <UpdateForm {...props} movies={movies} updateMovies={updateMovies} />} />
     </>
   );
 };

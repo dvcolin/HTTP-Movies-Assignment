@@ -23,7 +23,12 @@ const updateMovie = e => {
     e.preventDefault();
     Axios
     .put(`http://localhost:5000/api/movies/${movie.id}`, movie)
-    .then(res => console.log(res))
+    .then(res => {
+        console.log(res);
+        setMovie({});
+        props.updateMovies(res.data);
+        props.history.push('/');
+    })
     .catch(err => console.log(err))
     
 }
