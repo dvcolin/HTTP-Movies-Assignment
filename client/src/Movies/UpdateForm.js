@@ -29,8 +29,19 @@ const updateMovie = e => {
         props.updateMovies(res.data);
         props.history.push('/');
     })
+    .catch(err => console.log(err))   
+}
+
+const deleteMovie = e => {
+    e.preventDefault();
+    Axios
+    .delete(`http://localhost:5000/api/movies/${movie.id}`)
+    .then(res => {
+        console.log(res)
+        props.updateMovies(res.data);
+        props.history.push('/');
+    })
     .catch(err => console.log(err))
-    
 }
 
     return (
@@ -41,6 +52,7 @@ const updateMovie = e => {
                 <input onChange={handleChanges} type='text' name='director' value={movie.director}></input>
                 <input onChange={handleChanges} type='text' name='metascore' value={movie.metascore}></input>
                 <button onClick={updateMovie} type='submit'>Update</button>
+                <button onClick={deleteMovie}>DELETE</button>
             </form>
         </div>
     )
